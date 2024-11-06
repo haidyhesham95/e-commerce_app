@@ -123,7 +123,10 @@ class Register extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const LoginView()));
-                      })
+                      }),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),

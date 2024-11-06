@@ -93,8 +93,8 @@ class CartProductItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 210,
+                        Flexible(
+                         // width: 210,
                           child: Text(
                             product.product?.title ?? 'No Title',
                             maxLines: 2,
@@ -103,9 +103,11 @@ class CartProductItem extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          'EGP ${product.price}',
-                          style: AppStyles.styleMedium16(context),
+                        Flexible(
+                          child: Text(
+                            'EGP ${product.price}',
+                            style: AppStyles.styleMedium16(context),
+                          ),
                         ),
                         const SizedBox(height: 10),
                       ],

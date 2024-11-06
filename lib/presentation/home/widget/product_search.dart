@@ -16,8 +16,9 @@ class ProductSearch extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.7,
-              crossAxisSpacing: 15,
+              crossAxisSpacing: 7,
               mainAxisSpacing: 30,
+              mainAxisExtent: 240
             ),
             physics: const BouncingScrollPhysics(),
             //physics: NeverScrollableScrollPhysics(),

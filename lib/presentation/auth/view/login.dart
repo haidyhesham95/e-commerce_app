@@ -48,81 +48,83 @@ class LoginView extends StatelessWidget {
               key: cubit.formKey,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(flex: 2,),
-                    buildTopText(context,
-                        title: 'Welcome Back!',
-                        subtitle: 'Login to Your Account'),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                     SizedBox(height: MediaQuery.of(context).size.height * 0.11,),
+                      buildTopText(context,
+                          title: 'Welcome Back!',
+                          subtitle: 'Login to Your Account'),
 
-                    const Spacer(),
-                    const SizedBox(height: 50),
+                      const SizedBox(height: 60),
 
-                    TextFieldWidget(
-                      label: 'Email Address',
-                      controller: cubit.emailController,
-                      validator: (value) => cubit.validEmail(value),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.emailAddress,
-                      hintText: '@gmail.com',
+                      TextFieldWidget(
+                        label: 'Email Address',
+                        controller: cubit.emailController,
+                        validator: (value) => cubit.validEmail(value),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        hintText: '@gmail.com',
 
-                    ),
-                    const SizedBox(height: 20),
-                    TextFieldWidget(
-                      label: 'Password',
-                      controller: cubit.passwordController,
-                      validator: (value) => cubit.validPassword(value),
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.visiblePassword,
-                      obsecureText: cubit.isShowLoginPassword,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          cubit.changeLoginPasswordVisibility();
-                        },
-                        child: Visibility(
-                          visible: !cubit.isShowLoginPassword,
-                          replacement:  const Icon(CupertinoIcons.eye_slash),
-                          child:  const Icon(CupertinoIcons.eye),
-                        ),
                       ),
-                      hintText: '********',
-                    ),
-                    const SizedBox(height: 5),
-                    Align(
-                      alignment: Alignment.centerRight,
-                        child: InkWell(onTap: (){}, child: Text('Forget Password?',style: AppStyles.styleMedium15(context).copyWith(
-                          color: Colors.grey
-                        ),),)),
-                    const SizedBox(height: 50),
-                    if (state is LoginLoading)
-                      const CircularProgressIndicator(color: AppColors.blue,),
-                    if (state is! LoginLoading)
-                      ButtonWidget(
-                        loading: false,
-                        onPressed: () {
-                          cubit.login();
-                        },
-                        text: 'Sign In',
-                        height: 50,
-                        decorationColor: Theme.of(context).colorScheme.secondary,
-                        hasElevation: true,
-                      ),
-                    const Spacer(flex: 2,),
-                    CheckAccountText(
-                      text1: 'New User?',
-                      text2: ' Create Account',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Register(),
+                      const SizedBox(height: 20),
+                      TextFieldWidget(
+                        label: 'Password',
+                        controller: cubit.passwordController,
+                        validator: (value) => cubit.validPassword(value),
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.visiblePassword,
+                        obsecureText: cubit.isShowLoginPassword,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            cubit.changeLoginPasswordVisibility();
+                          },
+                          child: Visibility(
+                            visible: !cubit.isShowLoginPassword,
+                            replacement:  const Icon(CupertinoIcons.eye_slash),
+                            child:  const Icon(CupertinoIcons.eye),
                           ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20,)
-                  ],
+                        ),
+                        hintText: '********',
+                      ),
+                      const SizedBox(height: 5),
+                      Align(
+                        alignment: Alignment.centerRight,
+                          child: InkWell(onTap: (){}, child: Text('Forget Password?',style: AppStyles.styleMedium15(context).copyWith(
+                            color: Colors.grey
+                          ),),)),
+                      const SizedBox(height: 50),
+                      if (state is LoginLoading)
+                        const CircularProgressIndicator(color: AppColors.blue,),
+                      if (state is! LoginLoading)
+                        ButtonWidget(
+                          loading: false,
+                          onPressed: () {
+                            cubit.login();
+                          },
+                          text: 'Sign In',
+                          height: 50,
+                          decorationColor: Theme.of(context).colorScheme.secondary,
+                          hasElevation: true,
+                        ),
+                      const SizedBox(height: 20,),
+                      CheckAccountText(
+                        text1: 'New User?',
+                        text2: ' Create Account',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Register(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 20,)
+                    ],
+                  ),
                 ),
               ),
             );

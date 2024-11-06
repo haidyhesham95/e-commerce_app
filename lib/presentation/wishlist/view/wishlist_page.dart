@@ -22,7 +22,7 @@ class WishlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       backgroundColor: AppColors.gray,
@@ -153,67 +153,70 @@ class WishlistPage extends StatelessWidget {
                           },
                           child: Stack(
                             children: [
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15),
-                                      ),
-                                      child:
-                                          CachedNetworkImage(
-                                            imageUrl: product.imageCover ?? 'https://via.placeholder.com/150',
-                                            height: 180,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                            placeholder: (context, url) => Image.asset(
-                                              Assets.imagesDownload,
-                                            ),
-                                            errorWidget: (context, url, error) => const Center(
-                                              child: Icon(Icons.error, color: Colors.red),
-                                            ),
-                                          )
-
-
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            product.title ?? 'Product Name',
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: AppStyles.styleMedium15(context),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                'EGP ${product.price ?? 0}    ',
-                                                style: AppStyles.styleMedium13(context),
+                              SizedBox(
+                                height: size.height * 0.3,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  color: Colors.white,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                          topRight: Radius.circular(15),
+                                        ),
+                                        child:
+                                            CachedNetworkImage(
+                                              imageUrl: product.imageCover ?? 'https://via.placeholder.com/150',
+                                              height: size.height * 0.2,
+                                              width: double.infinity,
+                                              fit: BoxFit.cover,
+                                              placeholder: (context, url) => Image.asset(
+                                                Assets.imagesDownload,
                                               ),
-                                              Text(
-                                                '${product.priceAfterDiscount ?? 50} EGP',
-                                                style: AppStyles.styleMedium12(context).copyWith(
-                                                  color: AppColors.blue,
-                                                  decoration: TextDecoration.lineThrough,
+                                              errorWidget: (context, url, error) => const Center(
+                                                child: Icon(Icons.error, color: Colors.red),
+                                              ),
+                                            )
+
+
+                                      ),
+                                      const SizedBox(height: 15),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              product.title ?? 'Product Name',
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: AppStyles.styleMedium15(context),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'EGP ${product.price ?? 0}    ',
+                                                  style: AppStyles.styleMedium13(context),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                Text(
+                                                  '${product.priceAfterDiscount ?? 50} EGP',
+                                                  style: AppStyles.styleMedium12(context).copyWith(
+                                                    color: AppColors.blue,
+                                                    decoration: TextDecoration.lineThrough,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               Positioned(

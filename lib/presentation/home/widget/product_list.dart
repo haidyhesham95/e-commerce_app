@@ -17,6 +17,7 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return Stack(
       children: [
         GestureDetector(
@@ -35,7 +36,7 @@ class ProductList extends StatelessWidget {
             );
           },
           child: Container(
-            width: 200,
+            width: size.width * 0.52,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
@@ -49,8 +50,8 @@ class ProductList extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: cubit.products[index].imageCover ?? 'https://example.com/default-image.jpg',
                     height: size.height * 0.18,
-                    width: 200,
-                    fit: BoxFit.cover,
+                    width: size.width * 0.5,
+                   // fit: BoxFit.cover,
                     placeholder: (context, url) {
                       return Image.asset(Assets.imagesDownload, fit: BoxFit.cover);
                     },
@@ -71,8 +72,7 @@ class ProductList extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 140,
+                    Flexible(
                       child: Text(
                         "  ${cubit.products[index].brand!.slug}" ,
                         maxLines: 1,

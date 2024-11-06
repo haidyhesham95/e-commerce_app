@@ -26,11 +26,12 @@ class CheckoutButton extends StatelessWidget {
             );
             BlocProvider.of<StripeCubit>(context).clearCart();
 
-          } else if (state is PaymentFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error)),
-            );
-          }
+          } 
+          // else if (state is PaymentFailure) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(content: Text(state.error)),
+          //   );
+          // }
         },
         builder: (context, state) {
           return ElevatedButton(
@@ -41,9 +42,7 @@ class CheckoutButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
             ),
-            onPressed: state is PaymentLoading
-                ? null // Disable button while loading
-                : () {
+            onPressed:(){
               BlocProvider.of<StripeCubit>(context).makePayment(
                 totalCartPrice,
                 'EGP',

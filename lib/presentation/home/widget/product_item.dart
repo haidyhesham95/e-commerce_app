@@ -25,7 +25,7 @@ class ProductItem extends StatelessWidget {
     }
 
     return SizedBox(
-      height: size.height * 0.3,
+      height: size.height * 0.34,
       child: ListView.separated(
         separatorBuilder: (context, index) => const Row(
           children: [

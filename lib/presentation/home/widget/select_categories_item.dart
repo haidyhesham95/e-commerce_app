@@ -94,7 +94,7 @@ class _SelectCategoriesItemState extends State<SelectCategoriesItem> {
             ? Center(child: SizedBox())
             : filteredProducts.isNotEmpty
                 ? SizedBox(
-                    height: widget.size.height * 0.3,
+                    height: widget.size.height * 0.33,
                     child: ListView.separated(
                       separatorBuilder: (context, index) => const Row(
                         children: [
@@ -126,7 +126,7 @@ class _SelectCategoriesItemState extends State<SelectCategoriesItem> {
                                 );
                               },
                               child: Container(
-                                width: 200,
+                                width: widget.size.width * 0.52,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(12),
@@ -143,8 +143,8 @@ class _SelectCategoriesItemState extends State<SelectCategoriesItem> {
                                                 .imageCover ??
                                             'https://example.com/default-image.jpg',
                                         height: widget.size.height * 0.18,
-                                        width: 200,
-                                        fit: BoxFit.cover,
+                                        width: widget.size.width * 0.5,
+                                        //fit: BoxFit.cover,
                                         placeholder: (context, url) {
                                           return Image.asset(
                                               Assets.imagesDownload,
@@ -166,8 +166,7 @@ class _SelectCategoriesItemState extends State<SelectCategoriesItem> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
-                                          width: 140,
+                                        Flexible(
                                           child: Text(
                                             "  ${filteredProducts[index].brand!.slug}",
                                             maxLines: 1,
@@ -179,22 +178,24 @@ class _SelectCategoriesItemState extends State<SelectCategoriesItem> {
                                                             .grey.shade600),
                                           ),
                                         ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              filteredProducts[index]
-                                                      .ratingsAverage
-                                                      ?.toString() ??
-                                                  '5.0',
-                                              style: AppStyles.styleMedium15(
-                                                      context)
-                                                  .copyWith(
-                                                      color:
-                                                          Colors.grey.shade600),
-                                            ),
-                                            const Icon(Icons.star,
-                                                color: Colors.yellow, size: 20),
-                                          ],
+                                        Flexible(
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                filteredProducts[index]
+                                                        .ratingsAverage
+                                                        ?.toString() ??
+                                                    '5.0',
+                                                style: AppStyles.styleMedium15(
+                                                        context)
+                                                    .copyWith(
+                                                        color:
+                                                            Colors.grey.shade600),
+                                              ),
+                                              const Icon(Icons.star,
+                                                  color: Colors.yellow, size: 20),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -214,14 +215,17 @@ class _SelectCategoriesItemState extends State<SelectCategoriesItem> {
                                                 context),
                                           ),
                                           const SizedBox(width: 10),
-                                          Text(
-                                            '${filteredProducts[index].priceAfterDiscount ?? 50} EGP',
-                                            style:
-                                                AppStyles.styleMedium13(context)
-                                                    .copyWith(
-                                              color: AppColors.blue,
-                                              decoration:
-                                                  TextDecoration.lineThrough,
+                                          Flexible(
+                                            flex: 2,
+                                            child: Text(
+                                              '${filteredProducts[index].priceAfterDiscount ?? 50} EGP',
+                                              style:
+                                                  AppStyles.styleMedium13(context)
+                                                      .copyWith(
+                                                color: AppColors.blue,
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                              ),
                                             ),
                                           ),
                                           const Spacer(),
