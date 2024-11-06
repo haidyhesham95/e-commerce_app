@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:ecommerce_app/data/models/cart_model/delete_cart_model.dart';
 import 'package:ecommerce_app/domain/core/failure.dart';
 import '../../core/api_service.dart';
 import '../api/constance.dart';
@@ -120,6 +121,30 @@ class CartRepoImpl extends CartRepo {
 
       if (response != null && response.isNotEmpty) {
         final cartModel = CartModel.fromJson(response);
+        return Right(cartModel);
+      } else {
+        return left(ServerFailure("Response is null or empty"));
+      }
+    } catch (e) {
+      if (e is DioError) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DeleteCartModel>> clearCart() async {
+    try {
+      final token = await SharedPreferenceToken.getToken();
+      var response = await apiService.delete(
+        endPoint: '${EndPoints.cart}',
+        token: token,
+        data: {},
+      );
+
+      if (response != null && response.isNotEmpty) {
+        final cartModel = DeleteCartModel.fromJson(response);
         return Right(cartModel);
       } else {
         return left(ServerFailure("Response is null or empty"));

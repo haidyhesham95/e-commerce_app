@@ -13,6 +13,8 @@ class Assets {
   static const String fontsCairoSemiBold = 'assets/fonts/Cairo-SemiBold.ttf';
   static const String imagesDownload = 'assets/images/download.gif';
   static const String imagesExplore = 'assets/images/explore.png';
+  static const String imagesMasterCard = 'assets/images/master_card.svg';
+  static const String imagesNoData = 'assets/images/no_data.json';
   static const String imagesVector = 'assets/images/vector.png';
 
 }

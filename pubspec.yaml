@@ -47,8 +47,17 @@ dependencies:
   get_it:
   readmore:
   cached_network_image:
+  lottie:
+  intl:
+
 
   flutter_slidable: ^3.1.1
+  flutter_stripe: ^11.2.0
+  flutter_svg:
+  #flutter_credit_card: ^4.0.1
+ # flutter_paypal_payment: ^1.0.6
+
+
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +69,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  injectable_generator:
+  # add build runner if not already added
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

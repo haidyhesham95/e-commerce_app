@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../../core/utils/style/color.dart';
 import '../../../core/utils/style/font_size.dart';
 import '../../../data/models/cart_model/cart_model.dart';
+import 'checkout_button.dart';
 
 class CheckoutCard extends StatelessWidget {
   const CheckoutCard({super.key,required this.cart});
@@ -36,22 +36,13 @@ class CheckoutCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.blue,
-              minimumSize: const Size(double.infinity, 50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-            ),
-            onPressed: () {
-            },
-            child:  Text('Checkout', style: AppStyles.styleMedium18(context).copyWith(
-              color: Colors.white,
-            )),
-          ),
+
+          CheckoutButton(totalCartPrice: cart.data?.totalCartPrice ?? 0),
         ],
       ),
     );
   }
 }
+
+
+

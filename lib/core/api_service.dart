@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'dart:async';
-
 import 'package:ecommerce_app/core/shared_prefrense_token.dart';
 
 class ApiService {
@@ -22,12 +21,10 @@ class ApiService {
         return null;
       }
     } on DioError catch (e) {
-      print('Error refreshing token: ${e.message}');
       if (e.response?.statusCode == 400) {
       }
       return null;
     } catch (e) {
-      print('Unexpected error refreshing token: $e');
       return null;
     }
   }
@@ -45,7 +42,6 @@ class ApiService {
     } on DioError catch (e) {
       return _handleDioError(e);
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Error occurred during GET request');
     }
   }
@@ -74,13 +70,10 @@ class ApiService {
 
       return response.data;
     } on DioError catch (e) {
-      print('Error: ${e.message}');
       if (e.response?.data != null) {
-        print('Error response data: ${e.response?.data}');
       }
       return _handleDioError(e);
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Error occurred during POST request');
     }
   }
@@ -97,6 +90,7 @@ class ApiService {
         options: Options(
           headers: {
             'token': token,
+
           },
 
         ),
@@ -111,13 +105,10 @@ class ApiService {
 
       return response.data;
     } on DioError catch (e) {
-      print('Error: ${e.message}');
       if (e.response?.data != null) {
-        print('Error response data: ${e.response?.data}');
       }
       return _handleDioError(e);
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Error occurred during POST request');
     }
   }
@@ -139,7 +130,6 @@ class ApiService {
         ),
       );
 
-      print('Response: ${response.data}');
 
       if (response.data == null || response.data.isEmpty) {
         throw Exception('Response is null or missing data');
@@ -147,24 +137,22 @@ class ApiService {
 
       return response.data;
     } on DioError catch (e) {
-      print('Error: ${e.message}');
       if (e.response?.data != null) {
-        print('Error response data: ${e.response?.data}');
       }
       return _handleDioError(e);
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Error occurred during POST request');
     }
   }
 
 
   Map<String, dynamic> _handleDioError(DioError error) {
-    print('DioError: ${error.response?.statusCode} - ${error.message}');
     if (error.response != null) {
       return error.response?.data ?? {'error': 'Unknown error occurred'};
     } else {
       return {'error': 'Network error: ${error.message}'};
     }
   }
-}
+
+
+  }

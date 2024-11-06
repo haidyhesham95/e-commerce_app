@@ -24,6 +24,12 @@ final class IncrementCartSuccess extends CartState {
   IncrementCartSuccess({required this.cartModel});
 }
 
+final class IncrementCartLoading extends CartState {}
+final class DecrementCartLoading extends CartState {}
+
+final class UpdateCartLoading extends CartState {}
+
+final class DeleteCartLoading extends CartState {}
 final class DecrementCartSuccess extends CartState {
   final CartModel cartModel;
 

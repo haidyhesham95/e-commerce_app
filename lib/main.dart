@@ -1,12 +1,18 @@
 import 'package:ecommerce_app/core/git_it.dart';
+import 'package:ecommerce_app/data/api/constance.dart';
 import 'package:ecommerce_app/data/repository/home_repo_impl.dart';
 import 'package:ecommerce_app/presentation/home/manager/home_cubit.dart';
 import 'package:ecommerce_app/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey=EndPoints.publishableKey;
+
   setupServiceLocator();
 
   runApp(const MyApp());

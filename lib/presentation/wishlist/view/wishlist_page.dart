@@ -3,8 +3,10 @@ import 'package:ecommerce_app/data/repository/wishlist_repo_impl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import '../../../core/utils/style/color.dart';
 import '../../../core/utils/style/font_size.dart';
+import '../../../core/utils/widgets/dialog.dart';
 import '../../../generated/assets.dart';
 import '../../../core/api_service.dart';
 import '../../../core/git_it.dart';
@@ -37,18 +39,10 @@ class WishlistPage extends StatelessWidget {
                 child: CircularProgressIndicator(color: AppColors.blue),
               );
             } else if (state is WishlistFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                ),
-              );
+              showToast('${state.message}');
             } else if (state is WishlistProductRemoved) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Product removed from wishlist!'),
-                ),
-              );
-              context.read<WishlistCubit>().getWishlist();
+           showToast('Product removed from wishlist');
+            //  context.read<WishlistCubit>().getWishlist();
             }
           },
           builder: (context, state) {
@@ -59,8 +53,14 @@ class WishlistPage extends StatelessWidget {
             } else if (state is WishlistSuccess) {
               final wishlist = state.wishlistModel;
               if (wishlist.data?.isEmpty ?? true) {
-                return const Center(
-                  child: Text('Your wishlist is empty.'),
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      Assets.imagesNoData,),
+                    const SizedBox(height: 50),
+                     Text('Your wishlist is empty.', style: AppStyles.styleMedium18(context)),
+                  ],
                 );
               }
 

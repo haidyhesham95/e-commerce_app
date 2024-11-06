@@ -33,14 +33,14 @@ class CartProductItem extends StatelessWidget {
         openThreshold: 0.2,
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(
-          onDismissed: () {
+          onDismissed: ()  {
             cubit.deleteProductFromCart(product.product!.id!);
           },
         ),
         children: [
           SlidableAction(
             onPressed: (context) {
-              cubit.deleteProductFromCart(product.product!.id!);
+               cubit.deleteProductFromCart(product.product!.id!);
             },
             borderRadius: BorderRadius.circular(10),
             backgroundColor: Colors.red, // Set to transparent
@@ -126,7 +126,7 @@ class CartProductItem extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                cubit.updateProductCountInCart(product.product!.id!, product.count! + 1);
+                                cubit.incrementProductToCart(product.product!.id!, product.count! + 1);
                               },
                               icon: const Icon(Icons.add, color: Colors.white, size: 25),
                             ),
@@ -137,7 +137,7 @@ class CartProductItem extends StatelessWidget {
                             IconButton(
                               onPressed: () {
                                 if (product.count! > 1) {
-                                  cubit.updateProductCountInCart(product.product!.id!, product.count! - 1);
+                                  cubit.decrementProductToCart(product.product!.id!, product.count! - 1);
                                 }
                               },
                               icon: const Icon(Icons.remove, color: Colors.white, size: 25),
