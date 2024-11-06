@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/git_it.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../data/repository/auth_repo_impl.dart';
+import '../generated/assets.dart';
 import 'auth/view/login.dart';
 import 'home/view/home_view.dart';
 
@@ -9,7 +11,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () async {
+    Future.delayed(const Duration(seconds: 6), () async {
       final repo = getIt<AuthRepoImpl>();
       bool isLogin = await repo.isAuthenticated();
 
@@ -30,15 +32,11 @@ class SplashScreen extends StatelessWidget {
       }
     });
 
-    return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 20),
-            Text('Splash Screen...'),
-          ],
-        ),
+    return  Scaffold(
+      body: Lottie.asset(Assets.imagesSplash, fit: BoxFit.fill,
+        height: double.infinity,
+        width: double.infinity,
+
       ),
     );
   }

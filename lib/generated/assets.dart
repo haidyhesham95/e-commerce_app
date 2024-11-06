@@ -15,6 +15,7 @@ class Assets {
   static const String imagesExplore = 'assets/images/explore.png';
   static const String imagesMasterCard = 'assets/images/master_card.svg';
   static const String imagesNoData = 'assets/images/no_data.json';
+  static const String imagesSplash = 'assets/images/splash.json';
   static const String imagesVector = 'assets/images/vector.png';
 
 }
